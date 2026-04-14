@@ -1,0 +1,600 @@
+:root {
+    --bg-dark: #0f111a;
+    --bg-panel: rgba(26, 31, 46, 0.6);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --accent: #06b6d4;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --success: #10b981;
+    
+    --font-main: 'Outfit', sans-serif;
+    
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.4);
+    
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    background-image: linear-gradient(to bottom, rgba(15, 17, 26, 0.7), rgba(15, 17, 26, 0.95)), url('party_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(15, 17, 26, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #fff, var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo svg {
+    color: var(--primary);
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 5rem 2rem 3rem;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Layout Container */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* Form Elements */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.select-wrapper {
+    position: relative;
+    max-width: 300px;
+}
+
+select, input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-md);
+    outline: none;
+    transition: var(--transition);
+    appearance: none;
+}
+
+.dropdown-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+select:focus, input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+option {
+    background: var(--bg-dark);
+    color: var(--text-main);
+}
+
+/* Cards Grid */
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 4px 4px 0 0;
+    transition: width 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: var(--shadow-soft);
+}
+
+.card:hover::before {
+    width: 100%;
+}
+
+.card-header {
+    flex-grow: 1;
+}
+
+.card h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.location-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+/* Glass Panels */
+.glass-panel {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-soft);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.panel-header h3 {
+    font-size: 1.5rem;
+}
+
+.badge {
+    background: rgba(99, 102, 241, 0.2);
+    color: #a5b4fc;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* Seats Section */
+.stage {
+    background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+    text-align: center;
+    padding: 0.5rem;
+    border-radius: 5px 5px 20px 20px;
+    border-top: 2px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    margin-bottom: 2rem;
+    width: 80%;
+    margin-inline: auto;
+}
+
+.seat-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.seat {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 8px 8px 4px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: var(--transition);
+    position: relative;
+}
+
+.seat::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+}
+
+.seat:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.seat.selected {
+    background: var(--primary);
+    border-color: var(--primary-hover);
+    color: white;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+}
+
+.seat.selected::after {
+    background: rgba(0,0,0,0.2);
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.seat-sample {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+.seat-sample.available {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.seat-sample.selected {
+    background: var(--primary);
+}
+
+.action-bar {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.action-bar .btn {
+    width: auto;
+    min-width: 200px;
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Beautiful Ticket */
+.ticket-pass {
+    background: linear-gradient(135deg, rgba(88, 28, 135, 0.85) 0%, rgba(15, 23, 42, 0.95) 50%, rgba(8, 145, 178, 0.85) 100%), url('party_bg.png') center/cover;
+    border: 1px solid rgba(99, 102, 241, 0.6);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.4), inset 0 0 20px rgba(6, 182, 212, 0.3);
+    animation: slideUp 0.5s ease forwards;
+}
+
+.ticket-visual {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    min-width: 150px;
+}
+
+.ticket-visual::after {
+    content: '';
+    position: absolute;
+    right: -10px;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    background-image: radial-gradient(circle at 10px, var(--bg-dark) 8px, transparent 9px);
+    background-size: 20px 30px;
+    background-repeat: repeat-y;
+}
+
+.ticket-visual svg {
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.ticket-details {
+    padding: 2rem 3rem;
+    flex-grow: 1;
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px dashed var(--border-color);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.ticket-header h2 {
+    color: var(--primary);
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.status-confirmed {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--success);
+    background: rgba(16, 185, 129, 0.1);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.ticket-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info-item label {
+    font-size: 0.8rem;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}
+
+.info-item p {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.ticket-footer {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.barcode {
+    height: 40px;
+    width: 80%;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.8),
+        rgba(255,255,255,0.8) 2px,
+        transparent 2px,
+        transparent 6px,
+        rgba(255,255,255,0.8) 6px,
+        rgba(255,255,255,0.8) 10px,
+        transparent 10px,
+        transparent 12px
+    );
+    opacity: 0.5;
+}
+
+/* Animation utilities */
+.hidden {
+    display: none !important;
+}
+
+.slide-up {
+    animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .ticket-pass {
+        flex-direction: column;
+    }
+    .ticket-visual {
+        padding: 1.5rem;
+        min-height: 120px;
+    }
+    .ticket-visual::after {
+        right: 0;
+        top: -10px;
+        bottom: auto;
+        left: 0;
+        height: 20px;
+        width: 100%;
+        background-image: radial-gradient(circle at 10px, var(--bg-dark) 8px, transparent 9px);
+        background-size: 30px 20px;
+        background-repeat: repeat-x;
+    }
+    .ticket-details {
+        padding: 1.5rem;
+    }
+    .ticket-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .seat-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
